@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        {% block title %}Delete Post{% endblock %}
+
+        <h1>Delete Post...</h1>
+        <h3>Delete {{post.title}}</h3>
+        <div class='form-group'>
+        <form method = 'POST'
+            >{% csrf_token %}
+            <button class="btn btn-secondary">Delete</button>
+        </div>
+        
+    {% else %}
+        You are not alowed to DELETE this post
+    {% endif %}
+{% else %}
+
+    You are not alowed to be here, please, LOGIN or REGISTER
+
+{% endif %}
+{% endblock %}
